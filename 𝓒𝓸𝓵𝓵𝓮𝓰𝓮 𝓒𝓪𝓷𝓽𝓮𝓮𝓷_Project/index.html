@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karim City Canteen</title>
+
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        /* 1. Hero Background */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 2. Professional Typography */
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif; /* Clean Corporate Font */
+            font-weight: 700;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px; /* Wide spacing looks expensive */
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* The "Canteen" part - Elegant Serif */
+        .hero-content h1 span {
+            font-family: 'Playfair Display', serif; /* Elegant Editorial Font */
+            text-transform: none;
+            font-style: italic;
+            color: #4cd137; /* Fresh Green */
+            font-size: 1.3em;
+            display: block; /* Puts it on a new line or block */
+            margin-top: 5px;
+        }
+
+        /* The Professional Tagline */
+        .hero-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255,255,255,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            padding: 15px 0;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ddd;
+        }
+
+        /* 3. Login Fix */
+        .sign-modal, .signup-modal {
+            z-index: 9999 !important; 
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 0.8rem; letter-spacing: 1px; }
+            .hero-bg { height: 75vh; }
+        }
+    </style>
+  </head>
+  <body>
+    <header class="navbar" id="preview-navbar"></header>
+    <header class="mob-navbar" id="mob-preview-navbar"></header>
+
+    <section class="signup-modal"></section>
+    <section class="sign-modal"></section>
+
+    <section class="hero-bg prakat-ho-animation">
+        <div class="hero-content container-min">
+            <h1>Karim City <span class="clr-green">Canteen</span></h1>
+            <p>Culinary Excellence &nbsp;&bull;&nbsp; Wholesome Nutrition &nbsp;&bull;&nbsp; Vibrant Community</p>
+        </div>
+    </section>
+
+    <section class="showcase my-4">
+      <main class="container-min grid-1 text-center jc-ai-center">
+        <h1 class="lg clr-black" style="font-family: 'Playfair Display', serif;">Our Commitment</h1>
+        <br>
+        <article class="grid grid-3">
+          <div class="m-2 card p-2" style="border-top: 4px solid #d32f2f;">
+            <h4 class="md clr-black" style="font-family: 'Montserrat', sans-serif;">Fresh Ingredients</h4>
+            <p style="font-family: 'Montserrat', sans-serif; color: #666;">Meals prepared daily using locally sourced, premium ingredients.</p>
+          </div>
+          <div class="m-2 card p-2" style="border-top: 4px solid #388e3c;">
+            <h4 class="md clr-black" style="font-family: 'Montserrat', sans-serif;">Affordable Quality</h4>
+            <p style="font-family: 'Montserrat', sans-serif; color: #666;">Exceptional taste and hygiene at student-friendly prices.</p>
+          </div>
+          <div class="m-2 card p-2" style="border-top: 4px solid #fbc02d;">
+            <h4 class="md clr-black" style="font-family: 'Montserrat', sans-serif;">Diverse Menu</h4>
+            <p style="font-family: 'Montserrat', sans-serif; color: #666;">A wide selection of Asian cuisines, beverages, and healthy snacks.</p>
+          </div>
+        </article>
+      </main>
+    </section>
+
+    <section class="dishes my-4" style="background-color: #f9f9f9; padding: 4rem 0;">
+      <main class="container-min">
+        <h1 class="text-center lg p-1" style="font-family: 'Playfair Display', serif;">Student Favorites</h1>
+        <div class="flex jc-ai-center" id="best-dishes-container">
+          </div>
+      </main>
+    </section>
+
+   <footer class="customer-footer"></footer>
+
+    <script src="assets/js/functioning.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/features.js"></script>
+    <script src="assets/js/animations.js"></script>
+  </body>
+</html>

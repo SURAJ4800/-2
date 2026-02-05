@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karim City Canteen | Menu</title>
+
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container flex text-center jc-ai-center">
+        <div class="site-title flex align-item-center">
+          <div>
+            <a href="client-side.html"
+              ><h1>
+                <span class="clr-red">Karim City</span>
+                <span class="clr-green">Canteen</span>
+              </h1></a
+            >
+          </div>
+          <div class="toggle-bars mybar">
+            <div class="bars bar-1"></div>
+            <div class="bars bar-2"></div>
+            <div class="bars bar-3"></div>
+          </div>
+        </div>
+        <nav class="site-nav flex left-nav align-item-center">
+          <ul class="flex">
+            <li>
+              <a href="client-side.html"
+                ><i class="fas fa-cocktail"></i> Menu</a
+              >
+            </li>
+            <li>
+              <a href="user-orders.html"
+                ><i class="fas fa-coins"></i> Your Orders</a
+              >
+            </li>
+            <button class="btn" id="userlogout">Log Out</button>
+            <a class="flex" id="cart-btn">
+              <i class="fas fa-shopping-cart"></i>
+              <p id="cart-values">0</p>
+            </a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <header class="mob-navbar">
+      <nav class="nav container">
+        <ul class="mob-ul">
+          <li><a href="client-side.html">Menu</a></li>
+          <li><a href="user-orders.html">My Orders</a></li>
+          <button class="btn" id="userlogout">Log Out</button>
+          <a class="flex" id="cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <p id="cart-values">6</p>
+          </a>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="cart-overlay">
+      <div class="cart-innerlay">
+        <header class="cart-title text-center md">
+          <div>Your Cart</div>
+          <div>
+            <i
+              class="fas fa-times"
+              onclick="cartOverlay.classList.remove('show');
+                       cartInnerlay.classList.remove('showCart');"
+            >
+            </i>
+          </div>
+        </header>
+        <div class="cart-items-container py-2">
+          </div>
+        <hr class="py-1" />
+        <div class="cart-footer text-center sm">
+          <div>Your Total : &#8377;<span class="cart-total sm">0</span></div>
+          <div class="my-1">
+            <button class="clear-cart">Clear Cart</button>
+            <button class="check-out">Order Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-hero">
+      <div class="banner">
+        <h1 class="banner-title lg">Our Menu</h1>
+        <button class="banner-btn btn">order now</button>
+      </div>
+    </section>
+
+    <section class="menu" style="margin-bottom: 5rem">
+      <main class="container grid grid-1">
+        <div class="title text-center">
+          <h2 class="lg my-2">Filter By Category</h2>
+          <div class="btn-container grid grid-4">
+            <button
+              id="menu-filter"
+              class="filter-btn btn current"
+              type="button"
+              data-id="all"
+            >
+              All
+            </button>
+            <button
+              id="menu-filter"
+              class="filter-btn btn"
+              type="button"
+              data-id="Burger"
+            >
+              Burger
+            </button>
+            <button
+              id="menu-filter"
+              class="filter-btn btn"
+              type="button"
+              data-id="Sandwitch"
+            >
+              Sandwich
+            </button>
+            <button
+              id="menu-filter"
+              class="filter-btn btn"
+              type="button"
+              data-id="Fries"
+            >
+              Fries
+            </button>
+            <button
+              id="menu-filter"
+              class="filter-btn btn fv"
+              type="button"
+              data-id="Maggie"
+            >
+              Maggie
+            </button>
+            <button
+              id="menu-filter"
+              class="filter-btn btn"
+              type="button"
+              data-id="Beverages"
+            >
+              Beverages
+            </button>
+            <button
+              id="menu-filter"
+              class="filter-btn btn"
+              type="button"
+              data-id="Pasta"
+            >
+              Pasta
+            </button>
+          </div>
+        </div>
+        <hr />
+        <div class="menu-section grid grid-3">
+          </div>
+      </main>
+    </section>
+
+    <footer class="customer-footer" id="user-footer" style="margin-top: 10rem"></footer>
+    <script src="assets/js/functioning.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/features.js"></script>
+    <script src="assets/js/animations.js"></script>
+  </body>
+</html>

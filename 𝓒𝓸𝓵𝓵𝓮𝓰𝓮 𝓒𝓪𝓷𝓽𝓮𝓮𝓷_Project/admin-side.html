@@ -1,0 +1,139 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karim City | Admin Panel</title>
+
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container flex text-center jc-ai-center">
+            <div class="site-title flex align-item-center">
+                <div>
+                    <a href="index.html">
+                        <h1><span class="clr-red">Karim City</span> <span class="clr-green">Admin</span></h1>
+                    </a>
+                </div>
+            </div>
+            <nav class="site-nav flex left-nav align-item-center">
+                <ul class="flex">
+                    <li><a style="cursor: pointer;" id="nav-orders">Orders</a></li>
+                    <li><a style="cursor: pointer;" id="nav-products">Product Management</a></li>
+                    <button class="btn" id="logout" style="padding: 10px 20px">Log Out</button>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="orders-section" class="orders c-orders m-2">
+        <div class="container-min p-2">
+            <div class="flex" style="justify-content: space-between; align-items: center;">
+                <div class="title md text-center">Incoming Orders</div>
+
+                <div>
+                    <label for="order-filter" style="font-weight: bold;">Filter: </label>
+                    <select id="order-filter" style="padding: 5px; border-radius: 5px;">
+                        <option value="recent">Recent (24h)</option>
+                        <option value="7">Last 7 Days</option>
+                        <option value="30">Last 30 Days</option>
+                        <option value="90">Last 3 Months</option>
+                        <option value="365">Last 1 Year</option>
+                    </select>
+                </div>
+            </div>
+            <hr />
+
+            <div class="order-inner" id="admin-orders-container">
+                <p class="text-center my-2">Waiting for orders...</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="product-section" class="display-none">
+        <section class="product-management">
+            <div class="container-min grid">
+                <div class="title md text-center">Product Management</div>
+                <hr />
+                <article class="choose-operation text-center">
+                    <button class="btn p-1" id="add-product-menu">Add New Product</button>
+                    <button class="btn p-1" id="remove-product-menu">Remove Product</button>
+                    <button class="btn p-1" id="reset-menu-btn"
+                        style="background-color: #d9534f; color: white;">Fix/Reset Menu</button>
+                </article>
+            </div>
+        </section>
+
+        <section class="add-product add-container">
+            <div class="container-min grid">
+                <div class="title md text-center">Add Product</div>
+                <hr />
+                <article class="menu-item text-center">
+                    <div class="item-info">
+                        <div class="flex align-item-center">
+                            <input id="add-title" type="text" placeholder="Title (e.g. Veg Burger)" />
+                            <input id="add-calories" type="text" placeholder="Calories (e.g. 200 Kcal)" />
+                            <input id="add-price" type="number" placeholder="Price (e.g. 45)" />
+                        </div>
+                        <div class="item-category my-1">
+                            <select id="add-category">
+                                <option value="Burger">Burger</option>
+                                <option value="Maggie">Maggie</option>
+                                <option value="Fries">Fries</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Pasta">Pasta</option>
+                                <option value="Sandwitch">Sandwich</option>
+                                <option value="Bakery">Bakery</option>
+                            </select>
+                        </div>
+                        <input id="add-img-url" type="text" placeholder="Image Path (e.g. assets/images/burger.jpg)"
+                            style="width: 100%; margin-bottom: 10px;" value="assets/images/burger.jpg" />
+                        <div class="my-1 text-center">
+                            <button class="btn" id="btn-add-submit">Add to Menu</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="add-product remove remove-container">
+            <div class="container-min grid">
+                <div class="title md text-center">Remove Product</div>
+                <hr />
+                <article class="menu-item text-center">
+                    <div class="item-info">
+                        <figure>
+                            <h3 class="my-1">Select Item to Delete:</h3>
+                            <select id="remove-dropdown" style="padding: 10px; width: 100%; max-width: 400px;">
+                                <option value="">Loading items...</option>
+                            </select>
+                        </figure>
+                        <div class="my-1 text-center">
+                            <button class="btn" id="btn-remove-submit">Delete Selected Item</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <script src="assets/js/functioning.js"></script>
+    <script src="assets/js/admin.js"></script>
+    <script src="assets/js/animations.js"></script>
+</body>
+
+</html>
